@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+				http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+				
+
+	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" />
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+				<property name="objectMapper" ref="apiJacksonObjectMapper" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<context:component-scan base-package="com.***.ap.***.***" >
+		<context:exclude-filter type="annotation"
+            expression="org.springframework.stereotype.Service" />
+    </context:component-scan>  
+	<mvc:interceptors>
+        <mvc:interceptor> 
+            <mvc:mapping path="/plan/*" /> 
+              <bean class=" com.***.***.***.interceptor.LoginDetectiveInterceptor"></bean>     
+        </mvc:interceptor>
+        <mvc:interceptor> 
+            <mvc:mapping path="/fund/*" /> 
+              <bean class=" com.***.***.***.interceptor.LoginDetectiveInterceptor"></bean>     
+        </mvc:interceptor>
+         <mvc:interceptor> 
+            <mvc:mapping path="/article/*" /> 
+              <bean class=" com.***.***.***.interceptor.LoginDetectiveInterceptor"></bean>     
+        </mvc:interceptor>
+         <mvc:interceptor> 
+            <mvc:mapping path="/video/*" /> 
+              <bean class=" com.***.***.***.interceptor.LoginDetectiveInterceptor"></bean>     
+        </mvc:interceptor>
+        <mvc:interceptor> 
+            <mvc:mapping path="/region/*" /> 
+              <bean class=" com.***.***.***.interceptor.LoginDetectiveInterceptor"></bean>     
+        </mvc:interceptor>       
+    </mvc:interceptors> 
+	
+	
+	<bean id="apiJacksonObjectMapper" class="com.***.ap.api.framework.util.json.ApiJacksonObjectMapper" />
+	<import resource="/spring/profile-beans.xml"/>
+</beans>
