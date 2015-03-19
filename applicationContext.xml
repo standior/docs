@@ -19,7 +19,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath*:conf/test.properties</value>
-				<value>classpath*:/twweb-datasource.properties</value>
+				<value>classpath*:/docomoweb-datasource.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -51,7 +51,7 @@
 		<property name="dataSource" ref="twLocalDataSource" />
 	</bean>
 	
-		<import resource="classpath:/twweb-datasource.xml" />
+		<import resource="classpath:/docomoweb-datasource.xml" />
 	<!-- 
 	<bean id="twLocalDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName" value="jdbc/WEB_TW" />
