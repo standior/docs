@@ -1,0 +1,19 @@
+INSERT INTO aaa
+  (registration_id,
+   status,
+   check_birth_date,
+   check_hkid,
+   category,
+   updated_by,
+   updated_date)
+  SELECT registration_id, status, NULL, NULL, 'ECLUB', 'a493906', SYSDATE
+    FROM (SELECT row_number() over(PARTITION BY registration_id ORDER BY status ASC) rn,
+                registration_id,
+                status
+           FROM (SELECT DISTINCT registration_id,
+                                 decode(status,
+                                        'UNACTIVE',
+                                        'INACTIVE',
+                                        'ACTIVE') AS status
+                   FROM bbb))
+          WHERE rn = 1;
