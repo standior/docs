@@ -22,7 +22,9 @@ http://www.javacodegeeks.com/tutorials/java-tutorials/enterprise-java-tutorials/
 http://www.captaindebug.com/2011/06/using-jdks-runtime-class.html#.VQ9-to7oTpU
                                                            Spring 各种基本应用
 http://www.yihaomen.com/article/java/429.htm               spring 各种demo下载                                                           
---------------------security                                                           
+--------------------security 
+http://www.javacodegeeks.com/2013/07/su-and-sudo-in-spring-security-applications.html
+                                                           spring security switch user
 http://www.mossle.com/docs/auth/html/                      spring security
 http://www.javacodegeeks.com/2014/06/better-error-messages-with-bean-validation-1-1-in-spring-mvc-application.html
                                                            simple springmvc demo                                                           
