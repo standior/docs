@@ -9,20 +9,26 @@ http://blog.csdn.net/chaofanwei/article/details/21868637   同步容器、并发
 http://iamzhongyong.iteye.com/blog/2036612                 使用guava中的EventBus构建内存级别的事件引擎
 http://macrochen.iteye.com/blog/737058                     Google Guava 库用法整理
 http://ifeve.com/google-guava/                             Google Guava官方教程（中文版）
+
+http://www.javacodegeeks.com/2012/07/jmx-and-spring-part-3.html
+                                                           jmx 控制 remote jvm内存使用率例子
+
+https://code.google.com/p/nio-java-raptor/                 高效 nio 框架                                                           
+http://cuipengfei.me/blog/2014/10/23/scala-stream-application-scenario-and-how-its-implemented/
+                                                           scala 相关
+--------------------spring                                                           
 http://www.javacodegeeks.com/tutorials/java-tutorials/enterprise-java-tutorials/spring-tutorials/
                                                            Spring Tutorials！
 http://www.captaindebug.com/2011/06/using-jdks-runtime-class.html#.VQ9-to7oTpU
                                                            Spring 各种基本应用
-http://www.yihaomen.com/article/java/429.htm               spring 各种demo下载
-http://www.javacodegeeks.com/2012/07/jmx-and-spring-part-3.html
-                                                           jmx 控制 remote jvm内存使用率例子
+http://www.yihaomen.com/article/java/429.htm               spring 各种demo下载                                                           
+--------------------security                                                           
 http://www.mossle.com/docs/auth/html/                      spring security
 http://www.javacodegeeks.com/2014/06/better-error-messages-with-bean-validation-1-1-in-spring-mvc-application.html
-                                                           simple springmvc demo
-https://code.google.com/p/nio-java-raptor/                 高效 nio 框架                                                           
-http://cuipengfei.me/blog/2014/10/23/scala-stream-application-scenario-and-how-its-implemented/
-                                                           scala 相关
+                                                           simple springmvc demo                                                           
 https://github.com/jiwhiz/JiwhizBlogWeb                    spring security rememberMe----  Jiwhiz
+http://blog.csdn.net/mmm333zzz/article/details/16863543    spring security mvc 实例
+http://blog.csdn.net/mmm333zzz/article/details/42059349    springMVC4.0+shiro1.2.3+spring4.x+Mybaits3.2.8       
 http://docs.spring.io/spring/docs/current/spring-framework-reference/html/testing.html#spring-mvc-test-framework
                                                            spring-mvc-test-framework
 http://www.cnblogs.com/peterzb/archive/2010/06/02/1749920.html
