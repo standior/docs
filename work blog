@@ -9,6 +9,7 @@ http://blog.csdn.net/chaofanwei/article/details/21868637   同步容器、并发
 http://iamzhongyong.iteye.com/blog/2036612                 使用guava中的EventBus构建内存级别的事件引擎
 http://macrochen.iteye.com/blog/737058                     Google Guava 库用法整理
 http://ifeve.com/google-guava/                             Google Guava官方教程（中文版）
+http://www.cnblogs.com/peida/p/Guava_Bimap.html            guava collection
 
 http://www.javacodegeeks.com/2012/07/jmx-and-spring-part-3.html
                                                            jmx 控制 remote jvm内存使用率例子
