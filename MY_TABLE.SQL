@@ -1,0 +1,12 @@
+INSERT INTO MY_TABLE (
+		NAME,
+		CUSTOMER_CODE,
+		ADDRESS,
+		SOCIAL_NUM,
+		DATE
+		) VALUES (
+		#{NAME, jdbcType=VARCHAR},
+		#{ADDRESS, jdbcType=VARCHAR},
+		#{SOCIAL_NUM, jdbcType=VARCHAR},
+		SYSDATE
+		)
