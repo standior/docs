@@ -12,3 +12,172 @@ good6--202
 http://wenzhang.baidu.com/page/view?key=d80072e5f85a4156-1427291982
 
 
+在完成kvm虚拟机的安装之后，如果想要重装相同名字的虚拟机，是会有错误提示的，就算是删除了虚拟机的xml文件，也会弹出错误提示。如下红色所注
+
+[root@test-R410-4disk qemu]# virt-install --name=convirt --ram=512 --vcpus=2 --cpu=core2duo --pxe --os-type=linux --disk path=/data/vm/convirt.img,size=50 --network bridge=br1,model=virtio --network bridge=br0,model=virtio --graphics vnc,password=123456,port=9903 --hvm –force
+
+ERROR    Guest name 'convirt' is already in use.
+
+这点kvm和xen不同，xen的半虚拟化要想重装，只要把创建好的虚拟机配置文件删掉就可以了
+
+kvm如果想要重装相同名字的虚拟机，只需要在虚拟机停止的状态下执行如下命令
+
+[root@test-R410-4disk qemu]# virsh undefine convirt 
+Domain convirt has been undefined
+
+---------------------------------------------------------
+
+
+
+2  在  /etc/network/interfaces 中加入 dns-nameservers
+
+如：
+
+
+
+auto lo
+
+iface lo inet loopback
+
+# 主网络接口
+
+auto eth0
+
+iface eth0 inet manual
+
+auto br0
+
+iface br0 inet static
+
+        address 192.168.0.100
+
+        network 192.168.0.0
+
+        netmask 255.255.255.0
+
+        broadcast 192.168.0.255
+
+        gateway 192.168.0.1
+
+        dns-nameservers 202.96.69.38 202.96.64.68#辽宁dns
+
+        bridge_ports eth0
+
+        bridge_fd 9
+
+        bridge_hello 2
+
+        bridge_maxage 12
+
+        bridge_stp off
+
+
+切换用户  su user
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+生效的 create-vm.sh
+
+#!/bin/bash
+
+echo "Usage: ./vmcre.sh vmnamevmip"
+
+echo "remove old vm..."
+
+virsh destroy $1
+
+rm -fr /var/lib/libvirt/images/$1/
+
+virsh undefine $1 --remove-all-storage
+
+rm /etc/libvirt/qemu/$1
+
+echo "create new vm:/var/lib/libvirt/images/"$1
+
+mkdir -p "/var/lib/libvirt/images/$1/mytemplates/libvirt"
+
+cp /etc/vmbuilder/libvirt/* /var/lib/libvirt/images/$1/mytemplates/libvirt/
+
+cp /home/stanley/vm.partition /var/lib/libvirt/images/$1/
+
+cp /home/stanley/firstboot_vm.sh /var/lib/libvirt/images/$1/
+
+cd /var/lib/libvirt/images/$1/
+
+ 
+
+echo `sudo vmbuilder kvm ubuntu \
+
+--arch=amd64 \
+
+--hostname=$1 \
+
+--suite=precise \
+
+--flavour=virtual \
+
+--iso=/home/stanley/os/u1204.iso \
+
+--mirror=http://ftp.neu.edu.cn/mirrors/ubuntu/ \
+
+-o \
+
+--libvirt=qemu:///system \
+
+--ip=$2 \
+
+--gw=192.168.1.1 \
+
+--dns=202.96.69.38 202.96.75.68 \
+
+--bcast=192.168.1.255 \
+
+--mask=255.255.255.0 \
+
+--net=192.168.1.0 \
+
+--swapsize=4000 \
+
+--rootsize=100000 \
+
+--templates=/var/lib/libvirt/images/$1/mytemplates \
+
+--user=hadoop \
+
+--name=hadoop \
+
+--pass=hadoopuser123 \
+
+--addpkg=openssh-server \
+
+--firstboot=/var/lib/libvirt/images/$1/firstboot_vm.sh \
+
+--mem=4096 \
+
+--cpus=2 \
+
+--bridge=br0 \
+
+--debug \
+
+--verbose`
+
+
+
+echo "define and start vm: "$1
+
+echo `virsh define /etc/libvirt/qemu/$1.xml`
+
+echo `virsh start $1`
+
+
+
+
+
+运行：. create-vm.sh name 192.168.1.200 100000
+
+参数: name,ip,imagesize
+
+收藏于 2014-11-09
