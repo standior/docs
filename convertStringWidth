@@ -1,0 +1,42 @@
+var MykatakanaFullWidth = ["ヴ", "ガ", "ギ", "グ", "ゲ", "ゴ", "ザ", "ジ", "ズ", "ゼ",
+			"ゾ", "ダ", "ヂ", "ヅ", "デ", "ド", "バ", "ビ", "ブ", "ベ", "ボ", "パ",
+			"ピ", "プ", "ペ", "ポ", "。", "「", "」", "、", "?", "ヲ", "ァ",
+			"ィ", "ゥ", "ェ", "ォ", "ャ", "ュ", "ョ", "ッ", "ー", "ア", "イ", "ウ",
+			"エ", "オ", "カ", "キ", "ク", "ケ", "コ", "サ", "シ", "ス", "セ", "ソ",
+			"タ", "チ", "ツ", "テ", "ト", "ナ", "ニ", "ヌ", "ネ", "ノ", "ハ", "ヒ",
+			"フ", "ヘ", "ホ", "マ", "ミ", "ム", "メ", "モ", "ヤ", "ユ", "ヨ", "ラ",
+			"リ", "ル", "レ", "ロ", "ワ", "ン"];
+			
+var MykatakanaHalfWidth = ["ｳﾞ", "ｶﾞ", "ｷﾞ", "ｸﾞ", "ｹﾞ", "ｺﾞ", "ｻﾞ", "ｼﾞ",
+			"ｽﾞ", "ｾﾞ", "ｿﾞ", "ﾀﾞ", "ﾁﾞ", "ﾂﾞ", "ﾃﾞ", "ﾄﾞ", "ﾊﾞ", "ﾋﾞ",
+			"ﾌﾞ", "ﾍﾞ", "ﾎﾞ", "ﾊﾟ", "ﾋﾟ", "ﾌﾟ", "ﾍﾟ", "ﾎﾟ", "｡", "｢",
+			"｣", "､", "･", "ｦ", "ｧ", "ｨ", "ｩ", "ｪ", "ｫ", "ｬ", "ｭ", "ｮ",
+			"ｯ", "ｰ", "ｱ", "ｲ", "ｳ", "ｴ", "ｵ", "ｶ", "ｷ", "ｸ", "ｹ", "ｺ",
+			"ｻ", "ｼ", "ｽ", "ｾ", "ｿ", "ﾀ", "ﾁ", "ﾂ", "ﾃ", "ﾄ", "ﾅ", "ﾆ",
+			"ﾇ", "ﾈ", "ﾉ", "ﾊ", "ﾋ", "ﾌ", "ﾍ", "ﾎ", "ﾏ", "ﾐ", "ﾑ", "ﾒ",
+			"ﾓ", "ﾔ", "ﾕ", "ﾖ", "ﾗ", "ﾘ", "ﾙ", "ﾚ", "ﾛ", "ﾜ", "ﾝ"];
+
+/**
+ * convert string
+ * convert full-width character and number to half-width
+ * convert half-width Japanese katakana to full-width
+ */
+function convertStringWidth(str) {
+	  var result = ""; 
+    if (str.length > 0) {
+        for(i = 0;i < str.length;i ++) { 
+		        var charCode = str.charCodeAt(i); 
+		        if(charCode >= 65248 && charCode <= 65248 + 125) {
+		        	  result += String.fromCharCode(charCode - 65248);
+		        }
+		        else {
+		        	  result += String.fromCharCode(charCode);
+		        }
+		    }
+		    
+		    for(i = 0;i < katakanaHalfWidth.length;i ++) {
+		    	  result = result.replace(new RegExp(MykatakanaHalfWidth[i], "gm"), MykatakanaFullWidth[i]);
+		    }
+    } 
+    return result;
+}
