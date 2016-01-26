@@ -1,0 +1,16 @@
+public class ReplaceSql {
+
+	static String str = "20150605(String), 303629(String), 001(String)";
+
+	public static void main(String[] args) throws IOException {
+		String path = "/home/sqls/test.sql";
+		String readFileToString = FileUtils.readFileToString(new File(path), "utf-8");
+		List<String> splitToList = Splitter.on(",").splitToList(str.replaceAll("\\(String\\)", ""));
+		for (String split : splitToList) {
+			readFileToString=readFileToString.replaceFirst("\\?", "'"+StringUtils.trim(split)+"'");
+		}
+
+		System.out.println(  readFileToString);
+
+	}
+}
