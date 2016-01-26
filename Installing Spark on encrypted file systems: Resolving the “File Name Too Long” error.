@@ -1,0 +1,32 @@
+Installing Spark on encrypted file systems: Resolving the “File Name Too Long” error.
+
+I mostly run Linux on the systems I work on. Though I prefer CentOS for server and cloud instances, due to better compatibility with Hadoop, I’m more partial to Ubuntu or especially Linux Mint for my workstation Linux, especially on my laptop.
+
+Ubuntu and Mint both use ecryptfs (http://ecryptfs.org) for home folder encryption, which is optional. I use it because I don’t like the idea of my files being accessible in case I lose track of my laptop.
+
+While encryptfs is great, it creates some complications while building spark, because there’s apparently some limitations with very long filenames.
+
+Once I try to build spark (for example, with maven), I get an error after much maven spam:
+
+
+$ mvn -DskipTests clean package
+....
+....
+[error] uncaught exception during compilation: java.io.IOException
+[error] File name too long
+
+One easy workaround is not to build spark in the home folder. It doesn’t need to be there. Putting it in /usr/local, /opt, or something else is probably ok. But it is true that for most, the home folder is the first place it’s going to go, and so it’s nice to have another workaround.
+
+There is a jira on the subject here:
+https://issues.apache.org/jira/browse/SPARK-4820
+
+The solution is to edit pom.xml, and add the following lines in compile options:
+
+<arg>-Xmax-classfile-name</arg>
+<arg>128</arg>
+
+For me on Spark 1.3.0, that worked out to line 1130 in the pom.xml
+
+If you used sbt instead of maven to build, the solution per the jira is similar:
+
+scalacOptions in Compile ++= Seq("-Xmax-classfile-name", "128"),
