@@ -180,6 +180,8 @@ echo `virsh start $1`
 
 2  add export ...
         export JAVA_HOME=/home/stanley/jdk1.7.0_79
+        export CLASSPATH
+        export JRE_HOME
 3  active the file
 . ~/.bashrc
 
