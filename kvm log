@@ -173,7 +173,15 @@ echo `virsh define /etc/libvirt/qemu/$1.xml`
 echo `virsh start $1`
 
 
+---------------------
 
+
+1  sudo vi ~/.bashrc
+
+2  add export ...
+        export JAVA_HOME=/home/stanley/jdk1.7.0_79
+3  active the file
+. ~/.bashrc
 
 
 运行：. create-vm.sh name 192.168.1.200 100000
