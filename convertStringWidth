@@ -34,7 +34,7 @@ function convertStringWidth(str) {
 		        }
 		    }
 		    
-		    for(i = 0;i < katakanaHalfWidth.length;i ++) {
+		    for(i = 0;i < MykatakanaHalfWidth.length;i ++) {
 		    	  result = result.replace(new RegExp(MykatakanaHalfWidth[i], "gm"), MykatakanaFullWidth[i]);
 		    }
     } 
