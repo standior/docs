@@ -1,6 +1,6 @@
 host--192.168.1.112
 
-stanley/stanley
+user   stanley/stanley
 
 
 good3--119
@@ -8,6 +8,7 @@ good4--200
 good5--201
 good6--202
 
+user  hadoop/hadoopuser123
 
 http://wenzhang.baidu.com/page/view?key=d80072e5f85a4156-1427291982
 
