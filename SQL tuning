@@ -1,0 +1,40 @@
+
+
+2000w的数据量确实不小，
+
+1.你可以更新一下统计信息：
+
+update statistics 表名
+
+2.另外，通过下面的视图，可以查看一下，你所建立的索引的使用情况：
+
+
+select o.name as table_Name,
+       i.name as index_name,
+        
+       s.user_seeks,     --索引查找
+       s.user_scans,     --扫描
+       s.user_lookups,   --书签查找或键查找
+       s.user_updates    --索引更新次数     
+    
+from sys.dm_db_index_usage_stats s
+inner join sys.objects o
+        on s.object_id = o.object_id
+ 
+inner join sys.indexes i
+        on i.index_id = s.index_id
+           and i.object_id = s.object_id
+            
+where database_id= db_id()
+      and o.name in ('报表中涉及到的表1','报表中涉及到的表2')
+
+
+如果user_updates挺大，user_scans也很大，而其他的数很小，那么说明你的索引都没有用到，那就可能是索引有问题。
+
+3.查看一下报表中引用到的表，是否碎片率太大。
+
+dbcc showcontig('表',索引id)
+
+如果碎片率太大，可用过下面的语句重建索引：
+alter table 表
+rebuild
