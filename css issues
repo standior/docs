@@ -1,0 +1,3 @@
+1.colorbox can't scroll on safari.
+ #cboxLoadedContent{-webkit-overflow-scrolling: touch;}
+ Then, in my views opened by colorbox, I have added to the css the following style body{-webkit-transform:translate3d(0, 0, 0);}
